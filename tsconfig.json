@@ -1,0 +1,23 @@
+{
+    "include": ["src/**/*"],
+    "compilerOptions": {
+        "target": "es2016",
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "allowJs": true,
+        "declaration": true,
+        "emitDeclarationOnly": true,
+        "outDir": "dist",
+        "declarationMap": true,
+        "strict": true,
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["src/*"]
+        }
+    },
+    "plugins": [
+        {
+            "transform": "@zerollup/ts-transform-paths"
+        }
+    ]
+}
