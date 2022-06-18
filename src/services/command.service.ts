@@ -4,7 +4,7 @@ import { ICommand } from "@/interfaces";
 import path from "path";
 
 class CommandService {
-    private commands = new Collection<String, ICommand>();
+    private readonly commands = new Collection<String, ICommand>();
 
     public readCommandFolder(): void {
         const commandsPath = path.join(__dirname, "../commands");

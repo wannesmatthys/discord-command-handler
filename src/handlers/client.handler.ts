@@ -6,23 +6,26 @@ export const startClient = (commands: Collection<String, ICommand>) => {
 
     client.commands = commands;
 
-    client.once("ready", () => {
+    client.once("ready", (): void => {
         console.log("Ready!");
     });
 
-    client.on("interactionCreate", async (interaction: Interaction) => {
-        if (!interaction.isCommand()) {
-            return;
+    client.on(
+        "interactionCreate",
+        async (interaction: Interaction): Promise<void> => {
+            if (!interaction.isCommand()) {
+                return;
+            }
+
+            const command = client.commands?.get(interaction.commandName);
+
+            if (!command) {
+                return;
+            }
+
+            await command.execute(interaction);
         }
-
-        const command = client.commands?.get(interaction.commandName);
-
-        if (!command) {
-            return;
-        }
-
-        await command.execute(interaction);
-    });
+    );
 
     client.login(process.env.DISCORD_TOKEN);
 };
